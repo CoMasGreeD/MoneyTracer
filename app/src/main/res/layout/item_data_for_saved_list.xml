@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="horizontal"
+    android:padding="3dp">
+
+    <TextView
+        android:id="@+id/item_name"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="name"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_category"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_toEndOf="@+id/item_name"
+        android:layout_toRightOf="@+id/item_name"
+        android:text="category"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_date"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_toLeftOf="@+id/item_plus_or_minus"
+        android:text="date"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_money"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:text="money"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_plus_or_minus"
+        android:layout_width="10dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/item_money"
+        android:text="+" />
+
+
+</RelativeLayout>
