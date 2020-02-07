@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.vladshvyrev.moneytracer.MainActivity
 import com.vladshvyrev.moneytracer.R
 import com.vladshvyrev.moneytracer.Repository.network.ItemForListTransaction
+import com.vladshvyrev.moneytracer.ui.fragments.AccountsFragment.AccountsFragment
+import com.vladshvyrev.moneytracer.ui.fragments.ListOfCategoryFragment.ListOfCategoryFragment
+import com.vladshvyrev.moneytracer.ui.fragments.ListOfSavedTransactionFragment.ListOfSavedTransactionFragment
 import kotlinx.android.synthetic.main.fragment_main_page.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -51,6 +54,19 @@ class MainPageFragment : Fragment() {
         listData.add(ItemForListTransaction(5, "milk", "eat", "-", "21.02", 1.5.toDouble()))
         listData.add(ItemForListTransaction(6, "water", "eat", "-", "23.02", 0.5.toDouble()))
         listData.add(ItemForListTransaction(7, "salary", "work", "+", "01.02", 2000.toDouble()))
+        listData.add(ItemForListTransaction(2, "bread", "eat", "-", "02.02", 1.toDouble()))
+        listData.add(ItemForListTransaction(3, "pen", "market", "-", "03.02", 15.toDouble()))
+        listData.add(ItemForListTransaction(4, "notebook", "market", "-", "11.02", 1000.toDouble()))
+        listData.add(ItemForListTransaction(5, "milk", "eat", "-", "21.02", 1.5.toDouble()))
+        listData.add(ItemForListTransaction(6, "water", "eat", "-", "23.02", 0.5.toDouble()))
+        listData.add(ItemForListTransaction(7, "salary", "work", "+", "01.02", 2000.toDouble()))
+        listData.add(ItemForListTransaction(2, "bread", "eat", "-", "02.02", 1.toDouble()))
+        listData.add(ItemForListTransaction(3, "pen", "market", "-", "03.02", 15.toDouble()))
+        listData.add(ItemForListTransaction(4, "notebook", "market", "-", "11.02", 1000.toDouble()))
+        listData.add(ItemForListTransaction(5, "milk", "eat", "-", "21.02", 1.5.toDouble()))
+        listData.add(ItemForListTransaction(6, "water", "eat", "-", "23.02", 0.5.toDouble()))
+        listData.add(ItemForListTransaction(7, "salary", "work", "+", "01.02", 2000.toDouble()))
+
 
 
         return listData
@@ -64,5 +80,20 @@ class MainPageFragment : Fragment() {
                 adapter = blogAdapter
             }
         }
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        activity!!.supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container,
+                when(item?.itemId){
+                    R.id.item_1 -> ListOfCategoryFragment()
+                    R.id.item_2 -> AccountsFragment()
+                    R.id.item_3 -> ListOfSavedTransactionFragment()
+                    else -> return super.onOptionsItemSelected(item)
+                })
+            .addToBackStack(" ")
+            .commit()
+
+        return true
     }
 }

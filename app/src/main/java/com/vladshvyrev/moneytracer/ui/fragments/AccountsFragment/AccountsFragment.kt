@@ -1,16 +1,16 @@
 package com.vladshvyrev.moneytracer.ui.fragments.AccountsFragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vladshvyrev.moneytracer.R
 import com.vladshvyrev.moneytracer.Repository.network.ItemForAccounts
-import com.vladshvyrev.moneytracer.Repository.network.ItemForListTransaction
-import com.vladshvyrev.moneytracer.ui.fragments.MainPage.DataAdapterForMainPage
 import kotlinx.android.synthetic.main.fragment_main_page.*
+import kotlinx.android.synthetic.main.toolbar.*
+import kotlinx.android.synthetic.main.toolbar_only_menu.*
+
 
 
 class AccountsFragment: Fragment() {
@@ -25,9 +25,13 @@ class AccountsFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as AppCompatActivity).setSupportActionBar(my_Toolbar)
+        setHasOptionsMenu(true)
         initRecyclerView()
         addDataSet(createDataSet())
-
+    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main, menu)
     }
     private fun createDataSet(): ArrayList<ItemForAccounts> {
         val listData = ArrayList<ItemForAccounts>()

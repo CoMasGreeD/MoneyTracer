@@ -20,14 +20,13 @@ class PinCodeSqreenFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as AppCompatActivity).setSupportActionBar( my_Toolbar)
         item_button_for_replace.setOnClickListener{
-            CheckPinCode()
+            checkPinCode()
         }
     }
 
 
-    private fun CheckPinCode()
+    private fun checkPinCode()
     {
         val inputText = item_insert_Pin_Code.text.toString()
         if(inputText == "1111")

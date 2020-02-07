@@ -1,9 +1,7 @@
 package com.vladshvyrev.moneytracer.ui.fragments.ListOfSavedTransactionFragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vladshvyrev.moneytracer.R
@@ -20,7 +18,9 @@ class ListOfSavedTransactionFragment: Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_saved_list, container, false)
     }
-
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main, menu)
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()

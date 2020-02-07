@@ -3,11 +3,9 @@ package com.vladshvyrev.moneytracer
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import com.vladshvyrev.moneytracer.ui.fragments.AccountsFragment.AccountsFragment
 import com.vladshvyrev.moneytracer.ui.fragments.CreateNewTransaction.CreateNewTransactionFragment
-import com.vladshvyrev.moneytracer.ui.fragments.EditTransactionFragment.EditTransactionFragment
 import com.vladshvyrev.moneytracer.ui.fragments.ListOfCategoryFragment.ListOfCategoryFragment
 import com.vladshvyrev.moneytracer.ui.fragments.ListOfSavedTransactionFragment.ListOfSavedTransactionFragment
 import com.vladshvyrev.moneytracer.ui.fragments.MainPage.MainPageFragment
@@ -51,8 +49,7 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        var selectedItem = ""
+//    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 //        when(item?.itemId)
 //        {
 //           R.id.item_1 -> selectedItem= "1"
@@ -81,22 +78,20 @@ class MainActivity : AppCompatActivity() {
 //                //.addToBackStack("5")
 //                .commit()
 //        }
-
-
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragment_container,
-                when(item?.itemId){
-                R.id.item_1 -> ListOfCategoryFragment()
-                    R.id.item_2 -> AccountsFragment()
-                    R.id.item_3 -> ListOfSavedTransactionFragment()
-                    else -> return super.onOptionsItemSelected(item)
-            })
-            .addToBackStack(" ")
-            .commit()
-
-        return true
-    }
+//        supportFragmentManager
+//            .beginTransaction()
+//            .replace(R.id.fragment_container,
+//                when(item?.itemId){
+//                R.id.item_1 -> ListOfCategoryFragment()
+//                    R.id.item_2 -> AccountsFragment()
+//                    R.id.item_3 -> ListOfSavedTransactionFragment()
+//                    else -> return super.onOptionsItemSelected(item)
+//            })
+//            .addToBackStack(" ")
+//            .commit()
+//
+//        return true
+//    }
 }
 
 

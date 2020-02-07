@@ -1,9 +1,7 @@
 package com.vladshvyrev.moneytracer.ui.fragments.ListOfCategoryFragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vladshvyrev.moneytracer.R
@@ -36,7 +34,9 @@ class ListOfCategoryFragment : Fragment() {
             dialog.show(activity!!.supportFragmentManager,"custom")
         }
     }
-
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main, menu)
+    }
     private fun addDataSet(data: ArrayList<ItemForCategory>) {
         blogAdapter.submitList(data)
     }
