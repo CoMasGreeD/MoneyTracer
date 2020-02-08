@@ -8,8 +8,10 @@ import com.vladshvyrev.moneytracer.R
 import com.vladshvyrev.moneytracer.Repository.network.ItemForAccounts
 import com.vladshvyrev.moneytracer.Repository.network.ItemForCategory
 import com.vladshvyrev.moneytracer.Repository.network.ItemForListTransaction
+import com.vladshvyrev.moneytracer.ui.fragments.AccountsFragment.AccountsFragment
 import com.vladshvyrev.moneytracer.ui.fragments.AccountsFragment.DataAdapterForAccounts
 import com.vladshvyrev.moneytracer.ui.fragments.CreateNewCategory.CreateNewCategoryFragment
+import com.vladshvyrev.moneytracer.ui.fragments.ListOfSavedTransactionFragment.ListOfSavedTransactionFragment
 import kotlinx.android.synthetic.main.fragment_category.*
 import kotlinx.android.synthetic.main.fragment_main_page.*
 import kotlinx.android.synthetic.main.fragment_main_page.recycler_view
@@ -27,6 +29,7 @@ class ListOfCategoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
         initRecyclerView()
         addDataSet(createDataSet())
         add_category.setOnClickListener{
@@ -58,4 +61,5 @@ class ListOfCategoryFragment : Fragment() {
             }
         }
     }
+
 }

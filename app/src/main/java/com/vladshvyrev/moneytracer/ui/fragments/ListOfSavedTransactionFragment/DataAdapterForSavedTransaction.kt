@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.vladshvyrev.moneytracer.R
 import com.vladshvyrev.moneytracer.Repository.network.ItemForListTransaction
@@ -39,7 +40,7 @@ class DataAdapterForSavedTransaction: RecyclerView.Adapter<DataAdapterForSavedTr
         private val textCategory = itemView.item_category
         private val textMoney = itemView.item_money
         private val plusOrMinus = itemView.item_plus_or_minus
-        @SuppressLint("ResourceAsColor")
+
         fun bind(data: ItemForListTransaction) {
             dateTime.text=data.date
             textName.text = data.name
@@ -47,15 +48,15 @@ class DataAdapterForSavedTransaction: RecyclerView.Adapter<DataAdapterForSavedTr
             textId=data.id
             if(data.income == "-") {
                 plusOrMinus.text = data.income
-                plusOrMinus.setTextColor(R.color.red)
+                plusOrMinus.setTextColor(ContextCompat.getColor(itemView.context, R.color.red))
                 textMoney.text = data.money.toString()
-                textMoney.setTextColor(R.color.red)
+                textMoney.setTextColor(ContextCompat.getColor(itemView.context,R.color.red))
             }
             else{
                 plusOrMinus.text = data.income
-                plusOrMinus.setTextColor(R.color.primary)
+                plusOrMinus.setTextColor(ContextCompat.getColor(itemView.context,R.color.primary))
                 textMoney.text = data.money.toString()
-                textMoney.setTextColor(R.color.primary)
+                textMoney.setTextColor(ContextCompat.getColor(itemView.context,R.color.primary))
             }
         }
     }

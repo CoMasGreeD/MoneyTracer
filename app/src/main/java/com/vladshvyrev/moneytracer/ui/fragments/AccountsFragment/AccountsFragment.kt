@@ -7,10 +7,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vladshvyrev.moneytracer.R
 import com.vladshvyrev.moneytracer.Repository.network.ItemForAccounts
+import com.vladshvyrev.moneytracer.ui.fragments.ListOfCategoryFragment.ListOfCategoryFragment
+import com.vladshvyrev.moneytracer.ui.fragments.ListOfSavedTransactionFragment.ListOfSavedTransactionFragment
 import kotlinx.android.synthetic.main.fragment_main_page.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.android.synthetic.main.toolbar_only_menu.*
-
 
 
 class AccountsFragment: Fragment() {
@@ -23,15 +24,14 @@ class AccountsFragment: Fragment() {
         return inflater.inflate(R.layout.fragment_accounts, container, false)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main, menu)
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as AppCompatActivity).setSupportActionBar(my_Toolbar)
         setHasOptionsMenu(true)
         initRecyclerView()
         addDataSet(createDataSet())
-    }
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.main, menu)
     }
     private fun createDataSet(): ArrayList<ItemForAccounts> {
         val listData = ArrayList<ItemForAccounts>()
@@ -81,7 +81,6 @@ class AccountsFragment: Fragment() {
         listData.add(ItemForAccounts(3, "debt", (-1000).toDouble()))
         listData.add(ItemForAccounts(3, "debt", (-1000).toDouble()))
         listData.add(ItemForAccounts(1, "Work", 10000.toDouble()))
-
         return listData
     }
     private fun addDataSet(data: ArrayList<ItemForAccounts>) {

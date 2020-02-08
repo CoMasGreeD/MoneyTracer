@@ -24,14 +24,11 @@ class MainPageFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_main_page, container, false)
     }
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main, menu)
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as AppCompatActivity).setSupportActionBar(my_Toolbar)
         setHasOptionsMenu(true)
         initRecyclerView()
         var data: ArrayList<ItemForListTransaction> = createDataSet()
@@ -81,19 +78,5 @@ class MainPageFragment : Fragment() {
             }
         }
     }
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        activity!!.supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragment_container,
-                when(item?.itemId){
-                    R.id.item_1 -> ListOfCategoryFragment()
-                    R.id.item_2 -> AccountsFragment()
-                    R.id.item_3 -> ListOfSavedTransactionFragment()
-                    else -> return super.onOptionsItemSelected(item)
-                })
-            .addToBackStack(" ")
-            .commit()
 
-        return true
-    }
 }

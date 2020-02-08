@@ -34,7 +34,7 @@ class DataAdapterForCategory: RecyclerView.Adapter<DataAdapterForCategory.BlogVi
     ): RecyclerView.ViewHolder(itemView){
         private var textId: Int = 0
         private val textName = itemView.category_name
-        @SuppressLint("ResourceAsColor")
+
         fun bind(data: ItemForCategory) {
             textName.text = data.category
             textId=data.id

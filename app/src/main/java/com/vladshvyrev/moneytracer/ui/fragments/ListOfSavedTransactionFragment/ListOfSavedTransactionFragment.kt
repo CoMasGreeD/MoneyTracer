@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vladshvyrev.moneytracer.R
 import com.vladshvyrev.moneytracer.Repository.network.ItemForListTransaction
+import com.vladshvyrev.moneytracer.ui.fragments.AccountsFragment.AccountsFragment
+import com.vladshvyrev.moneytracer.ui.fragments.ListOfCategoryFragment.ListOfCategoryFragment
 import com.vladshvyrev.moneytracer.ui.fragments.MainPage.DataAdapterForMainPage
 import kotlinx.android.synthetic.main.fragment_main_page.*
 
@@ -23,6 +25,7 @@ class ListOfSavedTransactionFragment: Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
         initRecyclerView()
         addDataSet(createDataSet())
 
@@ -49,4 +52,5 @@ class ListOfSavedTransactionFragment: Fragment() {
             }
         }
     }
+
 }

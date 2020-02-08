@@ -6,4 +6,5 @@
     android:layout_height="wrap_content"
     android:minHeight="?attr/actionBarSize"
     android:orientation="vertical"
+    android:background="@color/primary"
     />

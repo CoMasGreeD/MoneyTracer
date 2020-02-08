@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.vladshvyrev.moneytracer.R
 import com.vladshvyrev.moneytracer.Repository.network.ItemForAccounts
@@ -35,17 +36,17 @@ class DataAdapterForAccounts: RecyclerView.Adapter<DataAdapterForAccounts.BlogVi
         private var textId: Int = 0
         private val textName = itemView.account_name
         private val textMoney = itemView.account_money
-        @SuppressLint("ResourceAsColor")
+
         fun bind(data: ItemForAccounts) {
             textName.text = data.name
             textId=data.id
             if(data.money < 0) {
                 textMoney.text = data.money.toString()
-                textMoney.setTextColor(R.color.red)
+                textMoney.setTextColor(ContextCompat.getColor(itemView.context,R.color.red))
             }
             else{
                 textMoney.text = data.money.toString()
-                textMoney.setTextColor(R.color.primary)
+                textMoney.setTextColor(ContextCompat.getColor(itemView.context,R.color.primary))
             }
         }
     }
