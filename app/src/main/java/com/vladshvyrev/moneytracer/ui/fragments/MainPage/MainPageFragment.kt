@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vladshvyrev.moneytracer.MainActivity
 import com.vladshvyrev.moneytracer.R
 import com.vladshvyrev.moneytracer.Repository.network.ItemForListTransaction
+import com.vladshvyrev.moneytracer.Repository.network.TransactionsList
 import com.vladshvyrev.moneytracer.ui.fragments.AccountsFragment.AccountsFragment
 import com.vladshvyrev.moneytracer.ui.fragments.ListOfCategoryFragment.ListOfCategoryFragment
 import com.vladshvyrev.moneytracer.ui.fragments.ListOfSavedTransactionFragment.ListOfSavedTransactionFragment
@@ -30,45 +33,47 @@ class MainPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
+        viewModel = ViewModelProviders.of(this).get(MainPageViewModel::class.java)
+        viewModel.userListLiveData.observe(this,observer)
+        viewModel.getTransactionList()
         initRecyclerView()
-        var data: ArrayList<ItemForListTransaction> = createDataSet()
-        addDataSet(data)
         new_transaction.setOnClickListener {
             (activity as MainActivity).startFragmentForAddTransaction()
         }
     }
 
-    private fun addDataSet(data: ArrayList<ItemForListTransaction>) {
+    private fun addDataSet(data: List<ItemForListTransaction>) {
         blogAdapter.submitList(data)
     }
 
-    private fun createDataSet(): ArrayList<ItemForListTransaction> {
-        val listData = ArrayList<ItemForListTransaction>()
-        listData.add(ItemForListTransaction(1, "car", "market", "-", "01.02", 15000.toDouble()))
-        listData.add(ItemForListTransaction(2, "bread", "eat", "-", "02.02", 1.toDouble()))
-        listData.add(ItemForListTransaction(3, "pen", "market", "-", "03.02", 15.toDouble()))
-        listData.add(ItemForListTransaction(4, "notebook", "market", "-", "11.02", 1000.toDouble()))
-        listData.add(ItemForListTransaction(5, "milk", "eat", "-", "21.02", 1.5.toDouble()))
-        listData.add(ItemForListTransaction(6, "water", "eat", "-", "23.02", 0.5.toDouble()))
-        listData.add(ItemForListTransaction(7, "salary", "work", "+", "01.02", 2000.toDouble()))
-        listData.add(ItemForListTransaction(2, "bread", "eat", "-", "02.02", 1.toDouble()))
-        listData.add(ItemForListTransaction(3, "pen", "market", "-", "03.02", 15.toDouble()))
-        listData.add(ItemForListTransaction(4, "notebook", "market", "-", "11.02", 1000.toDouble()))
-        listData.add(ItemForListTransaction(5, "milk", "eat", "-", "21.02", 1.5.toDouble()))
-        listData.add(ItemForListTransaction(6, "water", "eat", "-", "23.02", 0.5.toDouble()))
-        listData.add(ItemForListTransaction(7, "salary", "work", "+", "01.02", 2000.toDouble()))
-        listData.add(ItemForListTransaction(2, "bread", "eat", "-", "02.02", 1.toDouble()))
-        listData.add(ItemForListTransaction(3, "pen", "market", "-", "03.02", 15.toDouble()))
-        listData.add(ItemForListTransaction(4, "notebook", "market", "-", "11.02", 1000.toDouble()))
-        listData.add(ItemForListTransaction(5, "milk", "eat", "-", "21.02", 1.5.toDouble()))
-        listData.add(ItemForListTransaction(6, "water", "eat", "-", "23.02", 0.5.toDouble()))
-        listData.add(ItemForListTransaction(7, "salary", "work", "+", "01.02", 2000.toDouble()))
-
-
-
-        return listData
+//    private fun createDataSet(): ArrayList<ItemForListTransaction> {
+//        val listData = ArrayList<ItemForListTransaction>()
+//        listData.add(ItemForListTransaction(1, "car", "market", "-", "01.02", 15000.toDouble()))
+//        listData.add(ItemForListTransaction(2, "bread", "eat", "-", "02.02", 1.toDouble()))
+//        listData.add(ItemForListTransaction(3, "pen", "market", "-", "03.02", 15.toDouble()))
+//        listData.add(ItemForListTransaction(4, "notebook", "market", "-", "11.02", 1000.toDouble()))
+//        listData.add(ItemForListTransaction(5, "milk", "eat", "-", "21.02", 1.5.toDouble()))
+//        listData.add(ItemForListTransaction(6, "water", "eat", "-", "23.02", 0.5.toDouble()))
+//        listData.add(ItemForListTransaction(7, "salary", "work", "+", "01.02", 2000.toDouble()))
+//        listData.add(ItemForListTransaction(2, "bread", "eat", "-", "02.02", 1.toDouble()))
+//        listData.add(ItemForListTransaction(3, "pen", "market", "-", "03.02", 15.toDouble()))
+//        listData.add(ItemForListTransaction(4, "notebook", "market", "-", "11.02", 1000.toDouble()))
+//        listData.add(ItemForListTransaction(5, "milk", "eat", "-", "21.02", 1.5.toDouble()))
+//        listData.add(ItemForListTransaction(6, "water", "eat", "-", "23.02", 0.5.toDouble()))
+//        listData.add(ItemForListTransaction(7, "salary", "work", "+", "01.02", 2000.toDouble()))
+//        listData.add(ItemForListTransaction(2, "bread", "eat", "-", "02.02", 1.toDouble()))
+//        listData.add(ItemForListTransaction(3, "pen", "market", "-", "03.02", 15.toDouble()))
+//        listData.add(ItemForListTransaction(4, "notebook", "market", "-", "11.02", 1000.toDouble()))
+//        listData.add(ItemForListTransaction(5, "milk", "eat", "-", "21.02", 1.5.toDouble()))
+//        listData.add(ItemForListTransaction(6, "water", "eat", "-", "23.02", 0.5.toDouble()))
+//        listData.add(ItemForListTransaction(7, "salary", "work", "+", "01.02", 2000.toDouble()))
+//        return listData
+//    }
+private val observer = Observer<TransactionsList> { response ->
+    response.result?.let { result ->
+        addDataSet(result)
     }
-
+}
     private fun initRecyclerView() {
         context?.let {
             recycler_view.apply {

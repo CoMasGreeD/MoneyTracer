@@ -46,9 +46,9 @@ class ListOfCategoryFragment : Fragment() {
 
     private fun createDataSet(): ArrayList<ItemForCategory> {
         val listData = ArrayList<ItemForCategory>()
-        listData.add(ItemForCategory(1, "market"))
-        listData.add(ItemForCategory(2, "eat"))
-        listData.add(ItemForCategory(7, "work"))
+        listData.add(ItemForCategory(1, "market","spending"))
+        listData.add(ItemForCategory(2, "eat","income"))
+        listData.add(ItemForCategory(7, "work","income"))
         return listData
     }
 
