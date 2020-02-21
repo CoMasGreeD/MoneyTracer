@@ -1,12 +1,10 @@
 package com.vladshvyrev.moneytracer.Repository.network
 
 data class ItemForListTransaction (
-    val id : Int,
-    var name : String,
-    var category :String,
-    var money : Double,
-    var income:String,
-    var date: String
-
-
+    val id : Int?=null,
+    var name : String?=null,
+    var category :String?=null,
+    var money : Double?=null,
+    var income:String?=null,
+    var date: String?=null
 )

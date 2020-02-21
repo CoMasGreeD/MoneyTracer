@@ -24,17 +24,15 @@ class DataAdapterForMainPage: RecyclerView.Adapter<DataAdapterForMainPage.BlogVi
 
      override fun onBindViewHolder(holder: BlogViewHolder, position: Int) {
                 holder.bind(items[position])
-
-
     }
-    fun submitList(blogList: List<ItemForListTransaction>?){
-        items.addAll(blogList!!)
+    fun submitList(blogList: List<ItemForListTransaction>){
+        items.addAll(blogList)
         notifyDataSetChanged()
     }
     class BlogViewHolder constructor(
         itemView: View
     ):RecyclerView.ViewHolder(itemView){
-        private var textId: Int = 0
+        private var textId: Int? = 0
         private var dateTime =itemView.item_date
         private val textName = itemView.item_name
         private val textCategory = itemView.item_category
@@ -46,7 +44,7 @@ class DataAdapterForMainPage: RecyclerView.Adapter<DataAdapterForMainPage.BlogVi
             textName.text = data.name
             textCategory.text = data.category
             textId=data.id
-            if(data.income == "-") {
+            if(data.income == "spending") {
                 plusOrMinus.text = data.income
                 plusOrMinus.setTextColor(ContextCompat.getColor(itemView.context, R.color.red))
                 textMoney.text = data.money.toString()

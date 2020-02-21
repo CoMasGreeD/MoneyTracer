@@ -14,8 +14,8 @@ class MainPageViewModel: ViewModel() {
     val userListLiveData = MutableLiveData<TransactionsList>()
 fun getTransactionList()
 {
-repository.getTransactionList().enqueue(
-object: Callback<TransactionsList>{
+repository.getTransactionList()
+    .enqueue(object: Callback<TransactionsList>{
     override fun onFailure(call: Call<TransactionsList>, t: Throwable) {
 
     }

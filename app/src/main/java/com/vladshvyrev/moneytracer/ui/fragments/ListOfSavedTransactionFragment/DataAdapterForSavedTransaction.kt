@@ -34,7 +34,7 @@ class DataAdapterForSavedTransaction: RecyclerView.Adapter<DataAdapterForSavedTr
     class BlogViewHolder constructor(
         itemView: View
     ): RecyclerView.ViewHolder(itemView){
-        private var textId: Int = 0
+        private var textId: Int? = 0
         private var dateTime =itemView.item_date
         private val textName = itemView.item_name
         private val textCategory = itemView.item_category

@@ -36,7 +36,13 @@ class MainPageFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(MainPageViewModel::class.java)
         viewModel.userListLiveData.observe(this,observer)
         viewModel.getTransactionList()
-        initRecyclerView()
+        context?.let {
+            recycler_view.apply {
+                layoutManager = LinearLayoutManager(it, LinearLayoutManager.VERTICAL, false)
+                blogAdapter = DataAdapterForMainPage()
+                adapter = blogAdapter
+            }
+        }
         new_transaction.setOnClickListener {
             (activity as MainActivity).startFragmentForAddTransaction()
         }
@@ -45,43 +51,13 @@ class MainPageFragment : Fragment() {
     private fun addDataSet(data: List<ItemForListTransaction>) {
         blogAdapter.submitList(data)
     }
-
-//    private fun createDataSet(): ArrayList<ItemForListTransaction> {
-//        val listData = ArrayList<ItemForListTransaction>()
-//        listData.add(ItemForListTransaction(1, "car", "market", "-", "01.02", 15000.toDouble()))
-//        listData.add(ItemForListTransaction(2, "bread", "eat", "-", "02.02", 1.toDouble()))
-//        listData.add(ItemForListTransaction(3, "pen", "market", "-", "03.02", 15.toDouble()))
-//        listData.add(ItemForListTransaction(4, "notebook", "market", "-", "11.02", 1000.toDouble()))
-//        listData.add(ItemForListTransaction(5, "milk", "eat", "-", "21.02", 1.5.toDouble()))
-//        listData.add(ItemForListTransaction(6, "water", "eat", "-", "23.02", 0.5.toDouble()))
-//        listData.add(ItemForListTransaction(7, "salary", "work", "+", "01.02", 2000.toDouble()))
-//        listData.add(ItemForListTransaction(2, "bread", "eat", "-", "02.02", 1.toDouble()))
-//        listData.add(ItemForListTransaction(3, "pen", "market", "-", "03.02", 15.toDouble()))
-//        listData.add(ItemForListTransaction(4, "notebook", "market", "-", "11.02", 1000.toDouble()))
-//        listData.add(ItemForListTransaction(5, "milk", "eat", "-", "21.02", 1.5.toDouble()))
-//        listData.add(ItemForListTransaction(6, "water", "eat", "-", "23.02", 0.5.toDouble()))
-//        listData.add(ItemForListTransaction(7, "salary", "work", "+", "01.02", 2000.toDouble()))
-//        listData.add(ItemForListTransaction(2, "bread", "eat", "-", "02.02", 1.toDouble()))
-//        listData.add(ItemForListTransaction(3, "pen", "market", "-", "03.02", 15.toDouble()))
-//        listData.add(ItemForListTransaction(4, "notebook", "market", "-", "11.02", 1000.toDouble()))
-//        listData.add(ItemForListTransaction(5, "milk", "eat", "-", "21.02", 1.5.toDouble()))
-//        listData.add(ItemForListTransaction(6, "water", "eat", "-", "23.02", 0.5.toDouble()))
-//        listData.add(ItemForListTransaction(7, "salary", "work", "+", "01.02", 2000.toDouble()))
-//        return listData
-//    }
 private val observer = Observer<TransactionsList> { response ->
     response.result?.let { result ->
         addDataSet(result)
     }
 }
     private fun initRecyclerView() {
-        context?.let {
-            recycler_view.apply {
-                layoutManager = LinearLayoutManager(it, LinearLayoutManager.VERTICAL, false)
-                blogAdapter = DataAdapterForMainPage()
-                adapter = blogAdapter
-            }
-        }
+
     }
 
 }
