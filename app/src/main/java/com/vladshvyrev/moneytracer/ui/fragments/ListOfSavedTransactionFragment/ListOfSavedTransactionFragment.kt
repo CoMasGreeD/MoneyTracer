@@ -36,9 +36,9 @@ class ListOfSavedTransactionFragment: Fragment() {
 
     private fun createDataSet(): ArrayList<ItemForListTransaction> {
         val listData = ArrayList<ItemForListTransaction>()
-        listData.add(ItemForListTransaction(1, "car", "market", "-", "01.02", 15000.toDouble()))
-        listData.add(ItemForListTransaction(2, "bread", "eat", "-", "02.02", 1.toDouble()))
-        listData.add(ItemForListTransaction(3, "pen", "market", "-", "03.02", 15.toDouble()))
+        listData.add(ItemForListTransaction(1, "car", "market", 15000.toDouble(),"-", "01.02" ))
+        listData.add(ItemForListTransaction(2, "bread", "eat", 1.toDouble(),"-", "02.02" ))
+        listData.add(ItemForListTransaction(3, "pen", "market", 15.toDouble(),"-", "03.02"))
 
         return listData
     }

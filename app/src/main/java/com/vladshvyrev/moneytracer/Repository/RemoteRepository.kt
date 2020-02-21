@@ -37,7 +37,7 @@ class RemoteRepository private constructor() : Repository {
 
     private fun createApi() {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://localhost:3000/")
+            .baseUrl("https://my-json-server.typicode.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(OkHttpClient.Builder().apply {
                 addInterceptor(HttpLoggingInterceptor().apply {

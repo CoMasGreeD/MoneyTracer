@@ -8,7 +8,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiInterface {
-    @GET("transactions")
+    @GET("CoMasGreeD/CoMaGreeD-repo/transactions")
     fun getTransactionList(): Call<TransactionsList>
 //    @GET("public-api/users/{userId}")
 //    fun getUserId(
