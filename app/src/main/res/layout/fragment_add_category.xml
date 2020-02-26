@@ -5,18 +5,28 @@
 
 <EditText
     android:id="@+id/add_name_category"
-    android:layout_width="150dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_centerHorizontal="true"
-    android:layout_centerVertical="true"
+    android:padding="15dp"
+
     android:hint="insert name"
     />
     <EditText
-        android:layout_width="150dp"
+        android:id="@+id/inc_or_spend"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/add_name_category"
         android:layout_centerHorizontal="true"
+        android:padding="10dp"
         android:hint="income/spending"/>
+    <Button
+        android:id="@+id/butAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:textColor="@color/primary"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/inc_or_spend"/>
 
 
 </RelativeLayout>

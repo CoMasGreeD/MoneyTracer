@@ -46,14 +46,14 @@ class DataAdapterForSavedTransaction: RecyclerView.Adapter<DataAdapterForSavedTr
             textName.text = data.name
             textCategory.text = data.category
             textId=data.id
-            if(data.income == "-") {
-                plusOrMinus.text = data.income
+            if(data.income_or_not == "-") {
+                plusOrMinus.text = data.income_or_not
                 plusOrMinus.setTextColor(ContextCompat.getColor(itemView.context, R.color.red))
                 textMoney.text = data.money.toString()
                 textMoney.setTextColor(ContextCompat.getColor(itemView.context,R.color.red))
             }
             else{
-                plusOrMinus.text = data.income
+                plusOrMinus.text = data.income_or_not
                 plusOrMinus.setTextColor(ContextCompat.getColor(itemView.context,R.color.primary))
                 textMoney.text = data.money.toString()
                 textMoney.setTextColor(ContextCompat.getColor(itemView.context,R.color.primary))

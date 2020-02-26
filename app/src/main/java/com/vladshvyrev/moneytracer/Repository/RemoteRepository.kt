@@ -1,5 +1,6 @@
 package com.vladshvyrev.moneytracer.Repository
 
+import com.vladshvyrev.moneytracer.Repository.network.ItemForListTransaction
 import com.vladshvyrev.moneytracer.Repository.network.TransactionsList
 
 import okhttp3.OkHttpClient
@@ -24,16 +25,10 @@ class RemoteRepository private constructor() : Repository {
         }
     }
     private lateinit var api: ApiInterface
-//    private val token = "cO0vWxovDeIx1B0QdMhpBN3gTnJ4_Wu9Kemq"
-//    private val format = "json"
 
-    override fun getTransactionList(): Call<TransactionsList> = api.getTransactionList()
+    override fun getTransactionList(): Call<List<ItemForListTransaction>> = api.getTransactionList()
 
-//    override fun getUserId(id: String?): Call<UserResponse> = api.getUserId(
-//        id,
-//        format,
-//        token
-//    )
+    override fun postTransaction(tr:ItemForListTransaction): Call<ItemForListTransaction> = api.postTransaction(tr)
 
     private fun createApi() {
         val retrofit = Retrofit.Builder()

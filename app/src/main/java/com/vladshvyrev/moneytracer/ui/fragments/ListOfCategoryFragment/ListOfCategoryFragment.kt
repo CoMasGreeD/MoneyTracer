@@ -1,24 +1,33 @@
 package com.vladshvyrev.moneytracer.ui.fragments.ListOfCategoryFragment
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vladshvyrev.moneytracer.R
 import com.vladshvyrev.moneytracer.Repository.network.ItemForAccounts
 import com.vladshvyrev.moneytracer.Repository.network.ItemForCategory
 import com.vladshvyrev.moneytracer.Repository.network.ItemForListTransaction
+import com.vladshvyrev.moneytracer.ui.activities.AddCategoryActivity
 import com.vladshvyrev.moneytracer.ui.fragments.AccountsFragment.AccountsFragment
 import com.vladshvyrev.moneytracer.ui.fragments.AccountsFragment.DataAdapterForAccounts
 import com.vladshvyrev.moneytracer.ui.fragments.CreateNewCategory.CreateNewCategoryFragment
 import com.vladshvyrev.moneytracer.ui.fragments.ListOfSavedTransactionFragment.ListOfSavedTransactionFragment
+import com.vladshvyrev.moneytracer.ui.fragments.MainPage.MainPageViewModel
 import kotlinx.android.synthetic.main.fragment_category.*
 import kotlinx.android.synthetic.main.fragment_main_page.*
 import kotlinx.android.synthetic.main.fragment_main_page.recycler_view
+import org.koin.android.ext.android.inject
 
 
 class ListOfCategoryFragment : Fragment() {
-    private lateinit var blogAdapter: DataAdapterForCategory
+    private val viewModel: ListOfCategoryViewModel by inject()
+    private  lateinit var blogAdapter: DataAdapterForCategory
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,28 +38,49 @@ class ListOfCategoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+       // viewModel = ViewModelProviders.of(this).get(ListOfCategoryViewModel::class.java)
+        viewModel.getAllCategory().observe(this, observer)
+
         setHasOptionsMenu(true)
         initRecyclerView()
-        addDataSet(createDataSet())
-        add_category.setOnClickListener{
-            var dialog = CreateNewCategoryFragment()
-            dialog.show(activity!!.supportFragmentManager,"custom")
+
+        add_category.setOnClickListener {
+            startActivityForResult(
+                Intent(this.context, AddCategoryActivity::class.java),
+                ADD_NOTE_REQUEST
+            )
+        }
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == ADD_NOTE_REQUEST && resultCode == Activity.RESULT_OK && data != null) {
+            val newCategory = ItemForCategory(
+                data.getStringExtra(AddCategoryActivity.EXTRA_TITLE),
+                data.getStringExtra(AddCategoryActivity.EXTRA_DESCRIPTION)
+            )
+           viewModel.insert(newCategory)
+
+            Toast.makeText(this.context, "Note saved!", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this.context, "Note not saved!", Toast.LENGTH_SHORT).show()
         }
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main, menu)
     }
-    private fun addDataSet(data: ArrayList<ItemForCategory>) {
+
+    private fun addDataSet(data: List<ItemForCategory>) {
         blogAdapter.submitList(data)
     }
 
-    private fun createDataSet(): ArrayList<ItemForCategory> {
-        val listData = ArrayList<ItemForCategory>()
-        listData.add(ItemForCategory(1, "market","spending"))
-        listData.add(ItemForCategory(2, "eat","income"))
-        listData.add(ItemForCategory(7, "work","income"))
-        return listData
-    }
+//    private fun createDataSet(): ArrayList<ItemForCategory> {
+//        val listData = ArrayList<ItemForCategory>()
+//        listData.add(ItemForCategory(1, "market","spending"))
+//        listData.add(ItemForCategory(2, "eat","income"))
+//        listData.add(ItemForCategory(7, "work","income"))
+//        return listData
+//    }
 
     private fun initRecyclerView() {
         context?.let {
@@ -62,4 +92,12 @@ class ListOfCategoryFragment : Fragment() {
         }
     }
 
+    private val observer = Observer<List<ItemForCategory>> { list ->
+        list?.let {
+            blogAdapter.submitList(it)
+        }
+    }
+    companion object{
+        private const val ADD_NOTE_REQUEST = 1
+    }
 }

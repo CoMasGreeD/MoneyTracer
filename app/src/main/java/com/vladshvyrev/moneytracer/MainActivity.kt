@@ -1,18 +1,16 @@
 package com.vladshvyrev.moneytracer
 
 
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.widget.Toolbar
 import com.vladshvyrev.moneytracer.ui.fragments.AccountsFragment.AccountsFragment
 import com.vladshvyrev.moneytracer.ui.fragments.CreateNewTransaction.CreateNewTransactionFragment
 import com.vladshvyrev.moneytracer.ui.fragments.ListOfCategoryFragment.ListOfCategoryFragment
 import com.vladshvyrev.moneytracer.ui.fragments.ListOfSavedTransactionFragment.ListOfSavedTransactionFragment
 import com.vladshvyrev.moneytracer.ui.fragments.MainPage.MainPageFragment
 import com.vladshvyrev.moneytracer.ui.fragments.PinCodeSqreen.PinCodeSqreenFragment
-import kotlinx.android.synthetic.main.toolbar.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -20,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, PinCodeSqreenFragment())

@@ -1,20 +1,14 @@
 package com.vladshvyrev.moneytracer.Repository
 
 import com.vladshvyrev.moneytracer.Repository.network.ItemForListTransaction
-import com.vladshvyrev.moneytracer.Repository.network.TransactionsList
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ApiInterface {
     @GET("CoMasGreeD/CoMaGreeD-repo/transactions")
-    fun getTransactionList(): Call<TransactionsList>
-//    @GET("public-api/users/{userId}")
-//    fun getUserId(
-//        @Path("userId") id: String?,
-//        @Query("_format") format: String,
-//        @Query("access-token") accessToken: String
-//
-//    ): Call<UserResponse>
+    fun getTransactionList(): Call<List<ItemForListTransaction>>
+    @POST("CoMasGreeD/CoMaGreeD-repo/transactions")
+    fun postTransaction(
+       @Body tr : ItemForListTransaction
+    ): Call<ItemForListTransaction>
 }
