@@ -56,6 +56,23 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onStop() {
+        super.onStop()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+    override fun onPause() {
+        super.onPause()
+    }
+    override fun onStart() {
+        super.onStart()
+    }
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
     }
