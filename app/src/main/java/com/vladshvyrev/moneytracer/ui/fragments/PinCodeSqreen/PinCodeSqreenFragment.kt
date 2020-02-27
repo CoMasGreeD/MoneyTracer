@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import com.vladshvyrev.moneytracer.MainActivity
 import com.vladshvyrev.moneytracer.R
 import kotlinx.android.synthetic.main.fragment_pin_code.*
-import kotlinx.android.synthetic.main.toolbar.*
+
 
 class PinCodeSqreenFragment: Fragment() {
     override fun onCreateView(

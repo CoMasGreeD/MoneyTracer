@@ -1,7 +1,7 @@
 package com.vladshvyrev.moneytracer.Repository
 
 import com.vladshvyrev.moneytracer.Repository.network.ItemForListTransaction
-import com.vladshvyrev.moneytracer.Repository.network.TransactionsList
+
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

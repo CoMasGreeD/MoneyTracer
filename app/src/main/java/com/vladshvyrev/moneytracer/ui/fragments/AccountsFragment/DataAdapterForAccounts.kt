@@ -8,12 +8,13 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.vladshvyrev.moneytracer.R
 import com.vladshvyrev.moneytracer.Repository.network.ItemForAccounts
+import com.vladshvyrev.moneytracer.Repository.network.ItemForCategory
 
 import kotlinx.android.synthetic.main.item_data_for_accounts.view.*
 
 
-class DataAdapterForAccounts: RecyclerView.Adapter<DataAdapterForAccounts.BlogViewHolder>() {
-    private var items = mutableListOf<ItemForAccounts>()
+class DataAdapterForAccounts(val clickListener: (ItemForCategory) -> Unit): RecyclerView.Adapter<DataAdapterForAccounts.BlogViewHolder>() {
+    private var items = mutableListOf<ItemForCategory>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BlogViewHolder {
         return BlogViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.item_data_for_accounts, parent, false)
@@ -24,10 +25,13 @@ class DataAdapterForAccounts: RecyclerView.Adapter<DataAdapterForAccounts.BlogVi
     }
 
     override fun onBindViewHolder(holder: BlogViewHolder, position: Int) {
-        holder.bind(items[position])
+        holder.bind(items[position],clickListener)
     }
-    fun submitList(blogList: List<ItemForAccounts>){
-        items.addAll(blogList)
+    fun submitList(blogList: List<ItemForCategory>){
+        for( item in blogList) {
+            if(item.accItem?.money != null)
+                items.add(item)
+        }
         notifyDataSetChanged()
     }
     class BlogViewHolder constructor(
@@ -37,17 +41,23 @@ class DataAdapterForAccounts: RecyclerView.Adapter<DataAdapterForAccounts.BlogVi
         private val textName = itemView.account_name
         private val textMoney = itemView.account_money
 
-        fun bind(data: ItemForAccounts) {
-            textName.text = data.name
-            textId=data.id
-            if(data.money < 0) {
-                textMoney.text = data.money.toString()
-                textMoney.setTextColor(ContextCompat.getColor(itemView.context,R.color.red))
+        fun bind(data: ItemForCategory,clickListener: (ItemForCategory) -> Unit) {
+            itemView.setOnClickListener{
+                clickListener(data)
             }
-            else{
-                textMoney.text = data.money.toString()
-                textMoney.setTextColor(ContextCompat.getColor(itemView.context,R.color.primary))
+            if(data.accItem?.name != null) {
+                textName.text = data.accItem?.name
+                if(data.accItem!!.money < 0) {
+                    textMoney.text = data.accItem?.money.toString()
+                    textMoney.setTextColor(ContextCompat.getColor(itemView.context,R.color.red))
+                }
+                else{
+                    textMoney.text = data.accItem?.money.toString()
+                    textMoney.setTextColor(ContextCompat.getColor(itemView.context,R.color.primary))
+                }
             }
+            //textId=data.id
+
         }
     }
 }

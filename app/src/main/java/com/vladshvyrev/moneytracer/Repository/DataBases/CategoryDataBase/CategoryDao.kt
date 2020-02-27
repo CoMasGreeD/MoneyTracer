@@ -11,11 +11,11 @@ interface CategoryDao {
         @Insert
         fun insert(note: ItemForCategory)
 
-        @Query("DELETE FROM category_list")
-        fun deleteAllNotes()
+        @Delete
+        fun deleteFromList(note : ItemForCategory)
 
         @Query("SELECT * FROM category_list ")
-        fun getAllCategory(): LiveData<List<ItemForCategory>>
+        fun getAllCategory(): List<ItemForCategory>
 
 
 }

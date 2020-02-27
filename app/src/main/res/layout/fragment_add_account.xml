@@ -1,22 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/add_fon">
 
-    <EditText
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+        <EditText
         android:id="@+id/add_name_account"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:textColor="@android:color/black"
         android:hint="insert name"
         />
-    <EditText
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/add_name_account"
-        android:layout_centerHorizontal="true"
-        android:hint="money"/>
+        <EditText
+            android:id="@+id/money"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/add_name_account"
+            android:layout_centerHorizontal="true"
+            android:textColor="@android:color/black"
+            android:hint="money"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/add_acc"
+            android:background="@drawable/for_but_add"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/money"
+            android:textColor="@android:color/black"
+            android:text="Add"
+            /></RelativeLayout>
+
 
 
 </RelativeLayout>

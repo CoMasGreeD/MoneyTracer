@@ -20,32 +20,33 @@ class ListOfSavedTransactionFragment: Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_saved_list, container, false)
     }
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.main, menu)
-    }
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        inflater.inflate(R.menu.main, menu)
+//    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setHasOptionsMenu(true)
+       // setHasOptionsMenu(true)
         initRecyclerView()
-        addDataSet(createDataSet())
+            // addDataSet(createDataSet())
 
     }
     private fun addDataSet(data: ArrayList<ItemForListTransaction>) {
         blogAdapter.submitList(data)
     }
 
-    private fun createDataSet(): ArrayList<ItemForListTransaction> {
-        val listData = ArrayList<ItemForListTransaction>()
-        listData.add(ItemForListTransaction(1, "car", "market", 15000.toDouble(),"-", "01.02" ))
-        listData.add(ItemForListTransaction(2, "bread", "eat", 1.toDouble(),"-", "02.02" ))
-        listData.add(ItemForListTransaction(3, "pen", "market", 15.toDouble(),"-", "03.02"))
-
-        return listData
-    }
+//    private fun createDataSet(): ArrayList<ItemForListTransaction> {
+//        val listData = ArrayList<ItemForListTransaction>()
+//        listData.add(ItemForListTransaction(1, "car", "market", 15000.toDouble(),"-", "01.02" ))
+//        listData.add(ItemForListTransaction(2, "bread", "eat", 1.toDouble(),"-", "02.02" ))
+//        listData.add(ItemForListTransaction(3, "pen", "market", 15.toDouble(),"-", "03.02"))
+//
+//        return listData
+//    }
 
     private fun initRecyclerView() {
         context?.let {
             recycler_view.apply {
+                recycler_view.setHasFixedSize(true)
                 layoutManager = LinearLayoutManager(it, LinearLayoutManager.VERTICAL, false)
                 blogAdapter = DataAdapterForSavedTransaction()
                 adapter = blogAdapter

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/fragment_pin_code"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@drawable/fon_for_pin"
     android:orientation="vertical">
 
     <EditText
@@ -13,18 +12,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:hint="insert pin-code"
+        android:hint="@string/insert_pin_code"
         android:inputType="numberPassword"
-        android:textColor="@color/colorForPinCode">
-    </EditText>
+        android:textColor="@android:color/black"/>
 
     <Button
         android:id="@+id/item_button_for_replace"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
         android:layout_centerInParent="true"
         android:layout_toEndOf="@+id/item_insert_Pin_Code"
-        android:text="insert">
-    </Button>
+        android:background="@color/accent"
+        android:text="@string/insert"
+        android:textColor="@android:color/black"
+        android:textSize="10dp"/>
 
 </RelativeLayout>
